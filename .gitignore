@@ -133,3 +133,10 @@ demo.js
 /htmls
 /filter.js
 
+# PHP
+/vendor/
+composer.lock
+.env
+.env.php
+*.cache
+.phpunit.result.cache

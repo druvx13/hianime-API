@@ -1,0 +1,32 @@
+{
+  "name": "druvx13/hianime-api",
+  "description": "HiAnime API - PHP-based anime scraper API",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.1",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "ext-openssl": "*",
+    "ext-dom": "*",
+    "predis/predis": "^2.2",
+    "symfony/dom-crawler": "^6.4",
+    "symfony/css-selector": "^6.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    },
+    "files": [
+      "src/utils/helpers.php"
+    ]
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
