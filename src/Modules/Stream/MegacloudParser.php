@@ -12,6 +12,9 @@ class MegacloudParser
         ['name' => 'megaplay', 'domain' => 'megaplay.buzz'],
         ['name' => 'vidwish', 'domain' => 'vidwish.live'],
     ];
+    
+    // Token extraction URL parameters
+    private const TOKEN_PARAMS = 'k=1&autoPlay=0&oa=0&asi=1';
 
     public static function parse(array $selectedServer, string $id, int $retry = 0): ?array
     {
@@ -99,7 +102,7 @@ class MegacloudParser
     private static function decryptPrimarySource(string $baseUrl, string $sourceId, string $key): array
     {
         // Extract token
-        $token = TokenExtractor::extract("$baseUrl/$sourceId?k=1&autoPlay=0&oa=0&asi=1");
+        $token = TokenExtractor::extract("$baseUrl/$sourceId?" . self::TOKEN_PARAMS);
         
         if (!$token) {
             throw new AppError('Token extraction failed');
@@ -270,7 +273,8 @@ class MegacloudParser
 
     private static function extractDataId(string $html): ?string
     {
-        preg_match('/data-id=["' . "']" . '(\d+)["' . "']" . '/', $html, $matches);
+        // Match data-id attribute with single or double quotes
+        preg_match('/data-id=["\'](\d+)["\']/', $html, $matches);
         return $matches[1] ?? null;
     }
 

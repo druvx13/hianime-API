@@ -11,6 +11,9 @@ class TokenExtractor
 {
     private const MAX_RETRIES = 3;
     private const MIN_TOKEN_LENGTH = 10;
+    
+    // Regex pattern for window string extraction
+    private const WINDOW_STRING_PATTERN = '/window\.\w+\s*=\s*["\']([a-zA-Z0-9_-]{10,})["\']/';
 
     public static function extract(string $url, int $retry = 0): ?string
     {
@@ -98,7 +101,7 @@ class TokenExtractor
 
     private static function extractFromWindowStrings(string $html): ?string
     {
-        preg_match_all('/window\.\w+\s*=\s*["' . "']" . '([a-zA-Z0-9_-]{10,})["' . "']" . '/m', $html, $matches);
+        preg_match_all(self::WINDOW_STRING_PATTERN, $html, $matches);
         
         if (!empty($matches[1])) {
             foreach ($matches[1] as $match) {
@@ -114,13 +117,14 @@ class TokenExtractor
 
     private static function extractFromWindowObjects(string $html): ?string
     {
+        // Pattern to match window object assignments
         preg_match_all('/window\.\w+\s*=\s*(\{[^}]+\});/m', $html, $matches);
         
         if (!empty($matches[1])) {
             foreach ($matches[1] as $match) {
                 try {
                     // Try to extract strings from the object
-                    preg_match_all('/["' . "']" . '([a-zA-Z0-9_-]{5,})["' . "']" . '/', $match, $stringMatches);
+                    preg_match_all('/["\']([a-zA-Z0-9_-]{5,})["\']/', $match, $stringMatches);
                     
                     if (!empty($stringMatches[1])) {
                         $joined = implode('', $stringMatches[1]);

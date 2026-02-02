@@ -7,7 +7,11 @@ use App\Utils\Response;
 
 class RateLimiter
 {
-    private const STORAGE_FILE = '/tmp/rate_limit.json';
+    private function getStorageFile(): string
+    {
+        $tempDir = sys_get_temp_dir();
+        return $tempDir . DIRECTORY_SEPARATOR . 'hianime_rate_limit.json';
+    }
 
     public function handle(): void
     {
@@ -67,8 +71,9 @@ class RateLimiter
 
     private function loadData(): array
     {
-        if (file_exists(self::STORAGE_FILE)) {
-            $content = file_get_contents(self::STORAGE_FILE);
+        $storageFile = $this->getStorageFile();
+        if (file_exists($storageFile)) {
+            $content = file_get_contents($storageFile);
             return json_decode($content, true) ?? [];
         }
         return [];
@@ -76,7 +81,8 @@ class RateLimiter
 
     private function saveData(array $data): void
     {
-        file_put_contents(self::STORAGE_FILE, json_encode($data));
+        $storageFile = $this->getStorageFile();
+        file_put_contents($storageFile, json_encode($data));
     }
 
     private function cleanOldEntries(array $data, int $now, int $window): array

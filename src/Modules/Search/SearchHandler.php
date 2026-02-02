@@ -11,13 +11,15 @@ class SearchHandler
 {
     public static function handle(string $keyword, int $page = 1): array
     {
-        $html = HttpClient::fetchHtml("/search?keyword=" . urlencode($keyword) . "&page=$page");
+        $params = http_build_query(['keyword' => $keyword, 'page' => $page]);
+        $html = HttpClient::fetchHtml("/search?$params");
         return self::extract($html, $keyword, $page);
     }
 
     public static function suggestions(string $keyword): array
     {
-        $html = HttpClient::fetchHtml("/search/suggest?keyword=" . urlencode($keyword));
+        $params = http_build_query(['keyword' => $keyword]);
+        $html = HttpClient::fetchHtml("/search/suggest?$params");
         return self::extractSuggestions($html);
     }
 
