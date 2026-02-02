@@ -84,4 +84,18 @@ function setupRoutes(Router $router): void
         $html = file_get_contents(__DIR__ . '/../Views/doc.html');
         Response::html($html);
     });
+
+    // API Playground route
+    $router->get('/playground', function() {
+        $html = file_get_contents(__DIR__ . '/../Views/playground.html');
+        Response::html($html);
+    });
+
+    // Serve JavaScript client library
+    $router->get('/public/js/hianime-api-client.js', function() {
+        $js = file_get_contents(__DIR__ . '/../../public/js/hianime-api-client.js');
+        header('Content-Type: application/javascript');
+        echo $js;
+        exit;
+    });
 }
