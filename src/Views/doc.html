@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiAnime API Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .endpoint {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .endpoint h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .method {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-right: 10px;
+        }
+        
+        .get {
+            background: #28a745;
+            color: white;
+        }
+        
+        .path {
+            font-family: 'Courier New', monospace;
+            background: #f4f4f4;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .params {
+            margin: 15px 0;
+        }
+        
+        .param {
+            margin: 5px 0;
+            padding-left: 20px;
+        }
+        
+        .param code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #d63384;
+        }
+        
+        .example {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 3px solid #667eea;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        
+        .example pre {
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        
+        a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📚 HiAnime API Documentation</h1>
+        <p>PHP-based Anime Data Scraping API</p>
+    </div>
+    
+    <div class="container">
+        <p style="text-align: center; margin: 30px 0;">
+            <a href="/" style="font-size: 1.1em;">← Back to Home</a> | 
+            <a href="/playground" style="font-size: 1.1em; margin-left: 15px;">🎮 API Playground</a>
+        </p>
+        
+        <h2>Base URL</h2>
+        <div class="endpoint">
+            <code>/api/v1</code>
+        </div>
+        
+        <h2>Response Format</h2>
+        <div class="example">
+            <pre>{
+  "success": true,
+  "data": { /* endpoint specific data */ }
+}</pre>
+        </div>
+        
+        <h2>Endpoints</h2>
+        
+        <div class="endpoint">
+            <h3>Home Page</h3>
+            <span class="method get">GET</span>
+            <span class="path">/api/v1/home</span>
+            <p>Returns spotlight, trending, top airing, latest episodes, genres, and more.</p>
+            <div class="example">
+                <strong>Example:</strong><br>
+                <a href="/api/v1/home" target="_blank">/api/v1/home</a>
+            </div>
+        </div>
+        
+        <div class="endpoint">
+            <h3>Search Anime</h3>
+            <span class="method get">GET</span>
+            <span class="path">/api/v1/search</span>
+            <div class="params">
+                <strong>Query Parameters:</strong>
+                <div class="param"><code>keyword</code> (required) - Search keyword</div>
+                <div class="param"><code>page</code> (optional) - Page number (default: 1)</div>
+            </div>
+            <div class="example">
+                <strong>Example:</strong><br>
+                <a href="/api/v1/search?keyword=naruto&page=1" target="_blank">/api/v1/search?keyword=naruto&page=1</a>
+            </div>
+        </div>
+        
+        <div class="endpoint">
+            <h3>Search Suggestions</h3>
+            <span class="method get">GET</span>
+            <span class="path">/api/v1/search/suggestion</span>
+            <div class="params">
+                <strong>Query Parameters:</strong>
+                <div class="param"><code>keyword</code> (required) - Search keyword</div>
+            </div>
+            <div class="example">
+                <strong>Example:</strong><br>
+                <a href="/api/v1/search/suggestion?keyword=one" target="_blank">/api/v1/search/suggestion?keyword=one</a>
+            </div>
+        </div>
+        
+        <div class="endpoint">
+            <h3>Episode Servers</h3>
+            <span class="method get">GET</span>
+            <span class="path">/api/v1/servers</span>
+            <div class="params">
+                <strong>Query Parameters:</strong>
+                <div class="param"><code>id</code> (required) - Episode ID</div>
+            </div>
+            <p>Returns available streaming servers for an episode (sub, dub, raw).</p>
+        </div>
+        
+        <div class="endpoint">
+            <h3>Stream Links</h3>
+            <span class="method get">GET</span>
+            <span class="path">/api/v1/stream</span>
+            <div class="params">
+                <strong>Query Parameters:</strong>
+                <div class="param"><code>id</code> (required) - Episode ID</div>
+                <div class="param"><code>server</code> (required) - Server name (e.g., "hd-1", "hd-2")</div>
+                <div class="param"><code>type</code> (optional) - Type: "sub", "dub", or "raw" (default: "sub")</div>
+            </div>
+            <p>Returns HLS streaming links, subtitles, intro/outro timestamps.</p>
+        </div>
+        
+        <h2>Features</h2>
+        <div class="endpoint">
+            <ul style="list-style-position: inside;">
+                <li>✅ Redis caching support (configure via .env)</li>
+                <li>✅ Rate limiting (100 requests per minute by default)</li>
+                <li>✅ CORS enabled</li>
+                <li>✅ MegaCloud stream decryption</li>
+                <li>✅ Automatic fallback to alternative providers</li>
+                <li>✅ Subtitle extraction and merging</li>
+            </ul>
+        </div>
+        
+        <h2>Configuration</h2>
+        <div class="endpoint">
+            <p>Set environment variables in <code>.env.php</code>:</p>
+            <div class="example">
+                <pre>ORIGIN=*
+UPSTASH_REDIS_REST_URL=your_redis_url
+UPSTASH_REDIS_REST_TOKEN=your_redis_token
+RATE_LIMIT_WINDOW_MS=60000
+RATE_LIMIT_LIMIT=100</pre>
+            </div>
+        </div>
+        
+        <h2>JavaScript Client Library</h2>
+        <div class="endpoint">
+            <p>Use our vanilla JavaScript client library (no dependencies!) to easily consume the API from the browser:</p>
+            <div class="example">
+                <pre>&lt;!-- Include the client library --&gt;
+&lt;script src="/public/js/hianime-api-client.js"&gt;&lt;/script&gt;
+
+&lt;script&gt;
+// Initialize the client
+const api = new HiAnimeAPI('/api/v1');
+
+// Get home page data
+api.getHome().then(data => {
+    console.log(data.spotlight);
+    console.log(data.trending);
+});
+
+// Search anime
+api.search('naruto', 1).then(data => {
+    console.log(data.results);
+});
+
+// Get stream links
+api.getStream('anime-id?ep=1', 'hd-1', 'sub')
+    .then(stream => {
+        console.log(stream.link.file); // HLS URL
+        console.log(stream.tracks);    // Subtitles
+    });
+&lt;/script&gt;</pre>
+            </div>
+            <p style="margin-top: 15px;">
+                <strong>Download:</strong> 
+                <a href="/public/js/hianime-api-client.js" download style="color: #667eea;">hianime-api-client.js</a>
+            </p>
+        </div>
+        
+        <h2>Try it Live!</h2>
+        <div class="endpoint">
+            <p style="margin-bottom: 15px;">
+                Want to test the API without writing code? Check out our interactive playground:
+            </p>
+            <a href="/playground" style="display: inline-block; padding: 12px 24px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                🎮 Open API Playground
+            </a>
+        </div>
+        
+        <div style="text-align: center; margin: 40px 0; color: #999;">
+            <p>⚠️ This is an unofficial API for educational purposes only.</p>
+            <p>All content belongs to its original owners.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -3,6 +3,14 @@
 **hianime-API** is an unofficial REST API that scrapes anime data from **hianimez.to**.  
 It provides endpoints for anime discovery, details, episodes, servers, and streaming links.
 
+> 🚀 **PHP Version Available!**
+>
+> This repository now includes a complete PHP conversion! Check out [README.PHP.md](README.PHP.md) for the PHP implementation.
+> - ✅ Full feature parity with Node.js version
+> - ✅ Works with Apache/Nginx
+> - ✅ Easy deployment on shared hosting
+> - ✅ All streaming features including decryption
+
 > ⚠️ **Important**
 >
 > - This API is **unofficial** and not affiliated with hianimez.to
@@ -25,15 +33,14 @@ It provides endpoints for anime discovery, details, episodes, servers, and strea
 
 ## 💻 Installation
 
-### Prerequisites
+### Choose Your Version
 
-- **Bun** (required)
+#### Option 1: Node.js/Bun Version (Original)
 
-Install Bun → https://bun.sh/docs/installation
+**Prerequisites:**
+- **Bun** (required) → https://bun.sh/docs/installation
 
----
-
-### Local Setup
+**Local Setup:**
 
 ```bash
 git clone https://github.com/yahyaMomin/hianime-API.git
@@ -42,22 +49,44 @@ bun install
 bun run dev
 ```
 
-Server runs at:
+Server runs at: `http://localhost:3030`
 
-```
-http://localhost:3030
-```
-
-now vist /doc for intrective docs
-
-```bash
-http://localhost:3030/doc
-```
+Visit `/doc` for interactive docs: `http://localhost:3030/doc`
 
 > ⚠️ **Important**
 >
 > - You Cannot Run this Projct Directly Using Nodemon or node
 > - You Need to Build Project using tsup in ESM module To Run Using Node
+
+---
+
+#### Option 2: PHP Version (New!)
+
+**Prerequisites:**
+- **PHP 8.1+** (required)
+- **Composer** (for dependency management)
+- **Apache/Nginx** web server
+- PHP Extensions: `curl`, `json`, `mbstring`, `openssl`, `dom`
+
+**Local Setup:**
+
+```bash
+git clone https://github.com/yahyaMomin/hianime-API.git
+cd hianime-API
+composer install
+
+# Using PHP built-in server (development)
+php -S localhost:8080
+
+# OR configure Apache/Nginx (production)
+# See README.PHP.md for detailed instructions
+```
+
+Server runs at: `http://localhost:8080`
+
+Visit `/doc` for interactive docs: `http://localhost:8080/doc`
+
+**Full PHP Documentation:** See [README.PHP.md](README.PHP.md) for complete installation, configuration, and deployment instructions.
 
 ---
 

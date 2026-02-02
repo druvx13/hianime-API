@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiAnime API - PHP Edition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .description {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .features {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .features li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning strong {
+            color: #856404;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📺 HiAnime API</h1>
+        <div class="subtitle">PHP Edition - Anime Data Scraping API</div>
+        
+        <div class="description">
+            <strong>HiAnime-API</strong> is an unofficial REST API that scrapes anime data from <strong>hianimez.to</strong>. 
+            It provides endpoints for anime discovery, details, episodes, servers, and streaming links.
+        </div>
+        
+        <div class="warning">
+            <strong>⚠️ Important:</strong><br>
+            • This API is <strong>unofficial</strong> and not affiliated with hianimez.to<br>
+            • No hosted instance exists — <strong>deploy your own</strong><br>
+            • All content belongs to its original owners<br>
+            • This project is for <strong>educational and personal use only</strong>
+        </div>
+        
+        <h2>✨ Features</h2>
+        <ul class="features">
+            <li>Anime home page data (trending, spotlight, top airing, etc.)</li>
+            <li>Search & search suggestions</li>
+            <li>Detailed anime information</li>
+            <li>Episode lists with streaming servers</li>
+            <li>HLS streaming links with decryption</li>
+            <li>Redis caching support</li>
+            <li>Rate limiting</li>
+            <li>CORS enabled</li>
+            <li><strong>Interactive API Playground</strong> - Test endpoints in your browser!</li>
+            <li><strong>Vanilla JavaScript Client</strong> - No dependencies required!</li>
+        </ul>
+        
+        <h2>🚀 Quick Start</h2>
+        <div class="description">
+            Base URL: <code>/api/v1</code><br>
+            All responses follow:
+            <pre style="background: #f4f4f4; padding: 15px; border-radius: 5px; margin-top: 10px;">
+{
+  "success": true,
+  "data": {}
+}</pre>
+        </div>
+        
+        <div class="buttons">
+            <a href="/doc" class="btn btn-primary">📚 View API Documentation</a>
+            <a href="/playground" class="btn btn-primary">🎮 Try API Playground</a>
+            <a href="/api/v1/home" class="btn btn-secondary">🏠 Try /home endpoint</a>
+        </div>
+        
+        <div style="margin-top: 40px; text-align: center; color: #999; font-size: 0.9em;">
+            Converted to PHP | Original project by yahyamomin
+        </div>
+    </div>
+</body>
+</html>
